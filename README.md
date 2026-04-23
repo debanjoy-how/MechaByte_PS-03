@@ -1,66 +1,179 @@
-HTML-CSS-JS Skeleton
+# 🚀 FocusFlow AI – Smart Pomodoro Productivity System
 
-***🚀 DevWrap 2.0 — Repository Setup Guide***
+## 🧠 Overview
 
-Follow these steps carefully to set up your team repository correctly.
+FocusFlow AI is a smart Pomodoro-based productivity web application designed to help students stay focused, track study sessions, and improve learning efficiency.
 
-- 1️⃣ Fork the Repository
-Go to the main repository link shared by the organizers
-Click the Fork button (top-right corner) on GitHub
-This creates a copy of the repository under your account
-- 2️⃣ Rename Your Forked Repository
+It combines structured time management with intelligent insights to make studying more **disciplined, measurable, and effective** 📈
 
-After forking:
+---
 
-Open your forked repository
-Go to Settings → Repository Name
-Rename it using the format:
-TeamName_ProjectId
-✅ Example:
-CodeWarriors_DW102
+## 🏆 Hackathon Details
 
-⚠️ This format is mandatory for evaluation and tracking.
+* 🏁 **Event:** DEVWRAP 2.0
+* 🎯 **Problem Statement:** PS-03 · FocusFlow AI-Pomodoro System
+* 🧩 **Domain:** EdTech
+* 👥 **Team Name:** MechaByte
 
-- 3️⃣ Add Your Team Members as Contributors
-Go to Settings → Collaborators
-Click Add people
-Enter your teammates’ GitHub usernames
-Send the invite
-Teammates must accept the invitation
-💡 Tip:
+---
 
-Ensure all team members are added — commits from non-members may not be considered.
+## ❗ Problem Statement
 
-- 4️⃣ Clone the Repository to Your Local Machine
-🔹 Step 1: Copy Repo URL
-Go to your forked repo
-Click Code → HTTPS
-Copy the URL
-🔹 Step 2: Clone using Git
+Students often lose focus while studying due to distractions and lack of structured tracking systems, making it difficult to maintain consistency and productivity.
 
-Open terminal / command prompt:
-```bash
-git clone https://github.com/your-username/TeamName_ProjectId.git
+---
+
+## 💡 Our Solution
+
+FocusFlow AI provides a **smart study assistant** that:
+
+* ⏱️ Structures study time using Pomodoro technique
+* 📊 Tracks and logs sessions automatically
+* 🤖 Generates AI-based insights
+* 🔥 Builds productivity streaks
+* 📈 Visualizes progress for motivation
+
+---
+
+## ⚙️ Features
+
+### ⏱️ Pomodoro Timer
+
+* 25 min focus + 5 min break cycle
+* Start / Pause / Reset functionality
+* Handles tab switching & prevents drift
+
+---
+
+### 📊 Session Auto-Logging
+
+* Automatically records:
+
+  * Task name
+  * Duration
+  * Timestamp
+* Prevents duplicate sessions
+* Stored using LocalStorage
+
+---
+
+### 🤖 AI Study Summary
+
+* Generates smart insights after each session
+* Suggests improvements
+* Helps reflect on productivity
+
+---
+
+### 🔥 Smart Streak System
+
+* Tracks daily consistency
+* Timezone-aware logic
+* Encourages habit formation
+
+---
+
+### 🖼️ Progress Card Export
+
+* Generates shareable PNG report
+* Includes key stats like:
+
+  * Total sessions
+  * Study time
+  * Current streak
+
+---
+
+### 🚫 Distraction Detection
+
+* Tracks sources of distraction
+* Weekly behavioral insights
+* Helps improve focus
+
+---
+
+## 🛠️ Tech Stack
+
+* 🌐 HTML5
+* 🎨 CSS3
+* ⚡ JavaScript (Vanilla JS)
+* 💾 LocalStorage API
+* 🖌️ Canvas API
+
+---
+
+## 📁 Project Structure
+
 ```
-🔹 Step 3: Move into Project Folder
-cd TeamName_ProjectId
-- 5️⃣ Start Working Locally
-🔹 Create a new branch (recommended)
-```bash
-git checkout -b feature/your-feature-name
-```
-🔹 Make changes, then commit
-```bash
-git add .
-git commit -m "Added: feature description"
-```
-🔹 Push changes to GitHub
-```bash
-git push origin feature/your-feature-name
+MechaByte_PS-03/
+│── index.html
+│── README.md
+│
+└── src/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── main.js
 ```
 
-✅ Final Checklist
-✔ Repository name follows TeamName_ProjectId
-✔ All teammates added as collaborators
-✔ Code pushed to GitHub regularly
-✔ Proper commit messages used
+---
+
+## 🚀 How to Run
+
+1️⃣ Clone the repository
+
+```
+git clone https://github.com/debanjoy-how/MechaByte_PS-03.git
+```
+
+2️⃣ Open the project folder
+
+3️⃣ Run the project
+
+* Open `index.html` in browser
+  OR
+* Use Live Server in VS Code
+
+---
+
+## 🎥 Demo Video
+
+👉 *(Add your YouTube link here)*
+
+---
+
+## 🎯 Key Highlights
+
+* ✅ Fully client-side (no backend)
+* ⚡ Fast & lightweight
+* 🧠 Smart productivity tracking
+* 📊 Real-time insights
+* 🎨 Clean UI/UX
+
+---
+
+## 🚧 Future Improvements
+
+* 🔗 Real AI API integration
+* ☁️ Cloud sync
+* 🔐 User authentication
+* 📊 Advanced analytics dashboard
+
+---
+
+## 👨‍💻 Team MechaByte
+
+* 👑 Debanjoy Das (Team Lead) [ME]
+* 👩 Meghna Dutta [CSBS]
+* 👨 Dibbyajit Kundu [CSE-AIML]
+* 👨 Saral Sil [CSE]
+
+---
+
+## 🏁 Conclusion
+
+FocusFlow AI transforms studying into a **structured, trackable, and insightful process**, helping students stay consistent and improve productivity effectively 🚀
+
+---
+
+⭐ If you like this project, consider giving it a star!
