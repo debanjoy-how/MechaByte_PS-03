@@ -3,71 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevWrap — SC-ECE Presents</title>
-  <meta name="description" content="SC-ECE Presents DevWrap — From Sketch to Solution. A hackathon experience built for builders." />
+  <title>FocusFlow AI | Pomodoro Productivity Dashboard</title>
+  <meta
+    name="description"
+    content="FocusFlow AI is a local-first Pomodoro dashboard with timer accuracy, streak tracking, session logging, distraction analysis, and PNG exports."
+  />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet"
+  />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="src/css/styles.css" />
+  <link rel="stylesheet" href="src/css/style.css" />
 </head>
 <body>
+  <div class="app-shell">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-  <div id="root">
-
-    <!-- ── LOADER SCREEN ── -->
-    <div id="loader">
-      <div id="loader-title">SC-ECE<br/>PRESENTS</div>
-      <div id="loader-line"></div>
-      <div id="loader-subtitle">INNOVATION × DESIGN × ENGINEERING</div>
-      <div id="loader-hint">
-        💡 <strong>Ready to build?</strong><br/>
-        Start editing <code>index.html</code> to customize this page
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Local-first productivity cockpit</p>
+        <h1>FocusFlow AI</h1>
+        <p class="hero-copy">
+          A bold Pomodoro dashboard that keeps accurate time, protects your streak,
+          logs what you finished, tracks distractions, and turns your weekly progress
+          into a shareable card.
+        </p>
       </div>
-    </div>
 
-    <!-- ── DEVWRAP SCREEN ── -->
-    <div id="devwrap">
+      <div class="hero-meta panel">
+        <span class="meta-label">Today</span>
+        <strong id="today-label">Loading local date...</strong>
+        <p id="status-line">Ready for your next deep work block.</p>
+      </div>
+    </header>
 
-      <!-- Marquee bar -->
-      <div id="marquee-bar">
-        <div id="marquee-track">
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
-          <span>SC-ECE PRESENTS · DEVWRAP · FROM SKETCH TO SOLUTION ·</span>
+    <main class="dashboard">
+      <section class="panel timer-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">Pomodoro timer</p>
+            <h2>Stay in flow without losing precision</h2>
+          </div>
+          <span class="mode-chip" id="mode-chip">Focus session</span>
         </div>
-      </div>
 
-      <!-- Pixel grid (populated by JS) -->
-      <div id="pixel-grid"></div>
+        <div class="timer-layout">
+          <div class="timer-ring" id="timer-ring">
+            <div class="timer-core">
+              <span class="timer-caption" id="timer-caption">Current phase</span>
+              <strong id="timer-display">25:00</strong>
+              <span class="timer-subcaption" id="timer-subcaption">25 minutes of focus</span>
+            </div>
+          </div>
 
-      <div id="devwrap-title">devwrap</div>
-      <div id="devwrap-tagline">From Sketch to Solution</div>
+          <div class="timer-sidebar">
+            <div class="phase-card">
+              <span class="phase-card__label">Next transition</span>
+              <strong id="next-phase-label">Break unlocked after focus</strong>
+              <p id="phase-description">
+                FocusFlow AI uses timestamp-based timing so refreshes and tab throttling
+                do not cause timer drift.
+              </p>
+            </div>
 
-      <div id="welcome-msg">
-        Welcome, Builders. 🚀<br/>
-        <span>Turn your ideas into interfaces.</span>
-      </div>
+            <div class="control-row">
+              <button id="start-btn" class="btn btn-primary" type="button">Start</button>
+              <button id="pause-btn" class="btn btn-secondary" type="button">Pause</button>
+              <button id="reset-btn" class="btn btn-ghost" type="button">Reset</button>
+            </div>
 
-      <div id="devwrap-hint">
-        💡 <strong>Ready to customize?</strong><br/>
-        Start editing <code>index.html</code> to make changes
-      </div>
+            <div class="micro-stats">
+              <article>
+                <span>Phase length</span>
+                <strong id="phase-length">25 min</strong>
+              </article>
+              <article>
+                <span>Completed today</span>
+                <strong id="today-count">0</strong>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    </div><!-- /#devwrap -->
+      <section class="panel stats-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">Stats snapshot</p>
+            <h2>Measure your momentum</h2>
+          </div>
+        </div>
 
-  </div><!-- /#root -->
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span>Total sessions</span>
+            <strong id="total-sessions">0</strong>
+            <p>Completed focus blocks recorded locally.</p>
+          </article>
+          <article class="stat-card">
+            <span>Total focus time</span>
+            <strong id="total-time">0 min</strong>
+            <p>Combined time from logged Pomodoro sessions.</p>
+          </article>
+          <article class="stat-card">
+            <span>Current streak</span>
+            <strong id="current-streak">0 days</strong>
+            <p id="streak-caption">Complete one session today to start your streak.</p>
+          </article>
+          <article class="stat-card">
+            <span>Longest streak</span>
+            <strong id="longest-streak">0 days</strong>
+            <p>Best run based on your local calendar.</p>
+          </article>
+        </div>
+      </section>
 
-  <!-- Scripts -->
+      <section class="panel distraction-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">Distraction tracker</p>
+            <h2>Mark what pulled your attention</h2>
+          </div>
+        </div>
+
+        <div class="distraction-grid" id="distraction-options"></div>
+        <p class="panel-note">
+          Your selections are attached to the current focus session and rolled into the
+          weekly summary after the timer completes.
+        </p>
+      </section>
+
+      <section class="panel summary-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">AI recap</p>
+            <h2>Mock insights after every session</h2>
+          </div>
+          <button id="export-btn" class="btn btn-secondary" type="button">Export PNG</button>
+        </div>
+
+        <div class="summary-card">
+          <p class="summary-badge">FocusFlow AI summary</p>
+          <h3 id="summary-headline">Complete a focus session to generate your first recap.</h3>
+          <p id="summary-body">
+            Your summary will include the finished task, detected distractions, and a few
+            practical suggestions to strengthen the next session.
+          </p>
+          <ul id="summary-suggestions" class="suggestion-list">
+            <li>Start a 25-minute focus block to unlock tailored suggestions.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">Session history</p>
+            <h2>Recent completed work</h2>
+          </div>
+        </div>
+
+        <div class="history-list" id="history-list">
+          <article class="empty-state">
+            <strong>No sessions logged yet.</strong>
+            <p>Your finished Pomodoro blocks will appear here with task names and timestamps.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel weekly-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">Weekly distraction summary</p>
+            <h2>What challenged your focus this week</h2>
+          </div>
+        </div>
+
+        <div class="weekly-list" id="weekly-summary">
+          <article class="empty-state">
+            <strong>No distractions tracked this week.</strong>
+            <p>Select distraction tags during focus sessions to reveal your patterns.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="session-modal" hidden>
+    <div class="modal-card">
+      <p class="section-kicker">Session complete</p>
+      <h2>Name the task you just finished</h2>
+      <p id="modal-copy">
+        Save the finished task so FocusFlow AI can log the session and update your streak.
+      </p>
+      <form id="session-form">
+        <label class="field">
+          <span>Task name</span>
+          <input
+            id="task-input"
+            name="taskName"
+            type="text"
+            maxlength="100"
+            placeholder="Example: Finish operating systems notes"
+            autocomplete="off"
+            required
+          />
+        </label>
+        <button class="btn btn-primary modal-submit" type="submit">Save session</button>
+      </form>
+    </div>
+  </div>
+
+  <canvas id="export-canvas" width="1200" height="675" hidden></canvas>
+
   <script src="src/js/main.js"></script>
-
 </body>
 </html>
