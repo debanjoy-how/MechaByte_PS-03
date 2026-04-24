@@ -8,6 +8,19 @@
     name="description"
     content="FocusFlow AI is a local-first Pomodoro dashboard with timer accuracy, streak tracking, session logging, distraction analysis, and PNG exports."
   />
+  <script>
+    (function applyInitialTheme() {
+      try {
+        const storedTheme = localStorage.getItem("focusflow-ai.theme");
+        const prefersDark =
+          window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const resolvedTheme = storedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", resolvedTheme);
+      } catch (error) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +50,24 @@
       <div class="hero-meta panel">
         <span class="meta-label">Today</span>
         <strong id="today-label">Loading local date...</strong>
+        <p class="clock-label" id="live-clock">00:00:00</p>
         <p id="status-line">Ready for your next deep work block.</p>
+        <div class="utility-row">
+          <button
+            id="theme-toggle"
+            class="btn btn-secondary utility-btn focus-lock-target"
+            type="button"
+          >
+            Toggle theme
+          </button>
+          <button
+            id="fullscreen-toggle"
+            class="btn btn-secondary utility-btn"
+            type="button"
+          >
+            Enter Fullscreen
+          </button>
+        </div>
       </div>
     </header>
 
@@ -48,16 +78,21 @@
             <p class="section-kicker">Pomodoro timer</p>
             <h2>Stay in flow without losing precision</h2>
           </div>
-          <span class="mode-chip" id="mode-chip">Focus session</span>
+          <div class="mode-stack">
+            <span class="mode-chip" id="mode-chip">Focus session</span>
+            <span class="focus-mode-chip" id="focus-mode-indicator">🧠 Focus Mode ready</span>
+          </div>
         </div>
 
         <div class="timer-layout">
-          <div class="timer-ring" id="timer-ring">
+          <div class="timer-stage">
+            <div class="timer-ring" id="timer-ring">
             <div class="timer-core">
               <span class="timer-caption" id="timer-caption">Current phase</span>
               <strong id="timer-display">25:00</strong>
               <span class="timer-subcaption" id="timer-subcaption">25 minutes of focus</span>
             </div>
+          </div>
           </div>
 
           <div class="timer-sidebar">
@@ -85,8 +120,39 @@
                 <span>Completed today</span>
                 <strong id="today-count">0</strong>
               </article>
+              <article>
+                <span>Focus interruptions</span>
+                <strong id="focus-distraction-count">0</strong>
+              </article>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="panel analytics-panel">
+        <div class="panel-heading compact">
+          <div>
+            <p class="section-kicker">Dashboard analytics</p>
+            <h2>Track your recent study pattern</h2>
+          </div>
+          <span class="mode-chip">Last 7 days</span>
+        </div>
+
+        <div class="analytics-overview">
+          <article class="stat-card analytics-card">
+            <span>Total sessions</span>
+            <strong id="analytics-total-sessions">0</strong>
+            <p>Live count from your saved focus logs.</p>
+          </article>
+          <article class="stat-card analytics-card">
+            <span>Total study time</span>
+            <strong id="analytics-total-time">0 min</strong>
+            <p>Updated directly from stored session durations.</p>
+          </article>
+        </div>
+
+        <div class="chart-card">
+          <canvas id="sessions-chart" aria-label="Sessions per day analytics chart"></canvas>
         </div>
       </section>
 
@@ -120,6 +186,58 @@
             <p>Best run based on your local calendar.</p>
           </article>
         </div>
+
+        <div class="insight-stack">
+          <article class="phase-card goal-card">
+            <div class="goal-card__top">
+              <div>
+                <span class="phase-card__label">Daily goal</span>
+                <strong id="goal-title">Target 4 sessions</strong>
+              </div>
+              <span class="mode-chip" id="goal-progress-chip">0%</span>
+            </div>
+
+            <form id="goal-form" class="goal-form">
+              <label class="field goal-field">
+                <span>Sessions per day</span>
+                <input
+                  id="goal-input"
+                  class="focus-lock-target"
+                  type="number"
+                  min="1"
+                  max="12"
+                  step="1"
+                  inputmode="numeric"
+                  value="4"
+                  required
+                />
+              </label>
+              <button
+                id="goal-save-btn"
+                class="btn btn-secondary focus-lock-target"
+                type="submit"
+              >
+                Save goal
+              </button>
+            </form>
+
+            <div class="goal-progress">
+              <div class="goal-progress__track">
+                <div class="goal-progress__fill" id="goal-progress-fill"></div>
+              </div>
+              <p id="goal-progress-text">0 / 4 sessions completed today</p>
+            </div>
+          </article>
+
+          <article class="stat-card productivity-card">
+            <span>Productivity score</span>
+            <strong id="productivity-score">0 / 100</strong>
+            <p id="productivity-label">😴 Improve</p>
+            <p id="productivity-caption">
+              Based on today’s sessions, your streak, and distraction count.
+            </p>
+          </article>
+        </div>
       </section>
 
       <section class="panel distraction-panel">
@@ -143,7 +261,9 @@
             <p class="section-kicker">AI recap</p>
             <h2>Mock insights after every session</h2>
           </div>
-          <button id="export-btn" class="btn btn-secondary" type="button">Export PNG</button>
+          <button id="export-btn" class="btn btn-secondary focus-lock-target" type="button">
+            Export PNG
+          </button>
         </div>
 
         <div class="summary-card">
@@ -191,6 +311,10 @@
         </div>
       </section>
     </main>
+
+    <footer class="app-footer">
+      Created with <span aria-hidden="true">❤️</span> by MechaByte
+    </footer>
   </div>
 
   <div class="modal" id="session-modal" hidden>
@@ -218,8 +342,15 @@
     </div>
   </div>
 
+  <div class="focus-toast" id="focus-exit-toast" hidden>
+    <div class="focus-toast__card">
+      <strong>⚠️ You exited Focus Mode. Stay consistent!</strong>
+    </div>
+  </div>
+
   <canvas id="export-canvas" width="1200" height="675" hidden></canvas>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="src/js/main.js"></script>
 </body>
 </html>
