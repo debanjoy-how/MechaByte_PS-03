@@ -1,104 +1,124 @@
 # 🚀 FocusFlow AI – Smart Pomodoro Productivity System
 
 ## 🧠 Overview
-
 FocusFlow AI is a smart Pomodoro-based productivity web application designed to help students stay focused, track study sessions, and improve learning efficiency.
 
-It combines structured time management with intelligent insights to make studying more **disciplined, measurable, and effective** 📈
+It combines structured time management with behavioral insights to make studying more disciplined, measurable, and effective 📈
 
 ---
 
 ## 🏆 Hackathon Details
-
-* 🏁 **Event:** DEVWRAP 2.0
-* 🎯 **Problem Statement:** PS-03 · FocusFlow AI-Pomodoro System
-* 🧩 **Domain:** EdTech
-* 👥 **Team Name:** MechaByte
+🏁 Event: DEVWRAP 2.0  
+🎯 Problem Statement: PS-03 · FocusFlow AI (Pomodoro Productivity System)  
+🧩 Domain: EdTech  
+👥 Team Name: MechaByte  
 
 ---
 
 ## ❗ Problem Statement
-
 Students often lose focus while studying due to distractions and lack of structured tracking systems, making it difficult to maintain consistency and productivity.
 
 ---
 
 ## 💡 Our Solution
+FocusFlow AI provides a smart study assistant that:
 
-FocusFlow AI provides a **smart study assistant** that:
+⏱️ Structures study time using Pomodoro technique  
+📊 Tracks and logs sessions automatically  
+🧠 Analyzes distractions and behavior patterns  
+🔥 Builds productivity streaks  
+📈 Visualizes progress for motivation  
 
-* ⏱️ Structures study time using Pomodoro technique
-* 📊 Tracks and logs sessions automatically
-* 🤖 Generates AI-based insights
-* 🔥 Builds productivity streaks
-* 📈 Visualizes progress for motivation
+👉 FocusFlow AI doesn’t just track time — it tracks behavior.
 
 ---
 
 ## ⚙️ Features
 
 ### ⏱️ Pomodoro Timer
+- 25 min focus + 5 min break cycle  
+- Start / Pause / Reset functionality  
+- Accurate timestamp-based tracking  
 
-* 25 min focus + 5 min break cycle
-* Start / Pause / Reset functionality
-* Handles tab switching & prevents drift
+---
+
+### 🧠 Focus Mode (Fullscreen Experience)
+- Automatic fullscreen on session start  
+- Manual fullscreen toggle (top-right)  
+- Clean distraction-free UI  
+- Soft focus lock for immersive work  
+
+---
+
+### ⚠️ Distraction Tracking System
+- Detects:
+  - Tab switching  
+  - Fullscreen exits (ESC & button)  
+- Shows real-time warning messages  
+- Tracks interruptions per session  
+- Helps analyze focus behavior  
 
 ---
 
 ### 📊 Session Auto-Logging
+Automatically records:
 
-* Automatically records:
+- Task name  
+- Duration  
+- Start time  
+- End time  
+- Distraction count  
 
-  * Task name
-  * Duration
-  * Timestamp
-* Prevents duplicate sessions
-* Stored using LocalStorage
-
----
-
-### 🤖 AI Study Summary
-
-* Generates smart insights after each session
-* Suggests improvements
-* Helps reflect on productivity
+Stored locally using LocalStorage  
 
 ---
 
-### 🔥 Smart Streak System
-
-* Tracks daily consistency
-* Timezone-aware logic
-* Encourages habit formation
-
----
-
-### 🖼️ Progress Card Export
-
-* Generates shareable PNG report
-* Includes key stats like:
-
-  * Total sessions
-  * Study time
-  * Current streak
+### 📈 Analytics Dashboard
+- Total sessions completed  
+- Total focus time  
+- Weekly productivity insights  
+- Visualized using Chart.js  
 
 ---
 
-### 🚫 Distraction Detection
+### 🕒 Live Local Time
+- Displays real-time clock (HH:MM:SS)  
+- Uses user's local timezone  
+- Shown alongside current date  
 
-* Tracks sources of distraction
-* Weekly behavioral insights
-* Helps improve focus
+---
+
+### 📜 Session History
+- Logs all completed sessions  
+- Displays:
+  - Task name  
+  - Duration  
+  - Start time  
+  - End time  
+  - Distractions  
+
+---
+
+### 🎯 Productivity Insights
+- Tracks interruptions and consistency  
+- Helps users understand focus patterns  
+- Encourages disciplined deep work  
 
 ---
 
 ## 🛠️ Tech Stack
+🌐 HTML5  
+🎨 CSS3  
+⚡ JavaScript (Vanilla JS)  
+💾 LocalStorage API  
+📊 Chart.js (Analytics Visualization)  
+🖥️ Fullscreen API  
+👀 Page Visibility API  
 
-* 🌐 HTML5
-* 🎨 CSS3
-* ⚡ JavaScript (Vanilla JS)
-* 💾 LocalStorage API
-* 🖌️ Canvas API
+---
+
+## 🌐 Live Demo
+👉 https://debanjoy-how.github.io/MechaByte_PS-03/
 
 ---
 
